@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Roboto, sans-serif;
+      margin: 0;
+      padding: 18px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #E60000;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #666;
+      font-weight: 300;
+    }
+
+    .legal {
+      font-size: 0.7rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 300;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="checkbox"],
+    input[type="number"],
+    input[type="durée"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      resize: vertical;
+      align-content: left;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      resize: vertical;
+      align-content: left;
+    }
+
+
+    input[type="submit"] {
+      background-color: #E60000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      width: 100%;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 1; /* Opacity initialisée à 0.5 */
+    }
+
+    input[type="submit"]:hover {
+      background-color: #820000;
+    }
+
+    input:required {
+      border-color: #333;
+    }
+
+    input:invalid {
+      border-color:  ;
+    }
+
+    input:required:hover {
+      border-color: #007C92!important;
+      box-shadow: 0px 1px 4px 0px #00B0CA;
+    }
+
+    input:required:valid {
+      border-color: #333;
+    }
+
+    input:required:invalid:valid[type="email"] {
+      border-color: #333;
+    }
+
+    input:required:invalid:valid[type="email"] + span::before {
+      content: 'Ce champ doit contenir un email valide.';
+      color: red;
+      font-size: 12px;
+    }
+
+    input:required:invalid:valid[type="email"]:hover {
+      border-color: red!important;
+      box-shadow: 0px 1px 4px 0px #00B0CA;
+    }
+
+    input:required:invalid + span::before {
+      content: 'Ce champ est requis.';
+      color: red;
+      font-size: 12px;
+    }
+
+    input[type="submit"]:disabled {
+      cursor: not-allowed;
+      background-color: #EBEBEB;
+      border-color: #EBEBEB;
+      color: #AFAFAF;
+    }
+
+    input[type="submit"]:disabled:hover {
+      background-color: #CCC;
+    }
+
+    input[type="submit"]:disabled + span::before {
+      content: 'Veuillez remplir tous les champs.';
+      color: red;
+      font-size: 12px;
+    }
+
+    input:required:valid + input[type="submit"] {
+      opacity: 1;
+      border-color: green; /* Le bouton est activé lorsque tous les champs obligatoires sont valides */
+    }
+
+    #consentement {
+    width: 32px;
+    margin-left : -8px;
+    }
+
+    @media screen and (min-width: 768px) {
+
+    body {
+      width: 700px;
+      margin-left: 20%;
+      margin-right: 20%;
+
+    }
+
+}
+
+    
+  </style>
+
+
+</head>
+<body>
+  <h2>Obtenez 5% de réduction en réservant votre carte Maeva Prestige ! </h2>
+  <p class="subtitle"> Vous verrez, elle a le sens de l'accueil ...</p>
+  <form id="myForm">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Adresse e-mail :</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="dateArrivee">Date d'arrivée en Polynésie :</label>
+      <input type="date" id="dateArrivee" name="dateArrivee" required>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre de lignes téléphoniques à réserver:</label>
+      <select id="nombre" name="nombre" required>
+        <option value="">Sélectionnez un nombre</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div class="error-message"></div>
+    </div>
+    <div class="form-group">
+      <label for="durée">Durée du séjour envisagé:</label>
+      <select id="durée" name="durée" required>
+        <option value="">Sélectionnez une durée</option>
+        <option value="<6"> Moins de 6 mois</option>
+        <option value=">6">Plus de 6 mois</option>
+        <option value=">12">Plus de 12 mois</option>
+        <option value=">24">Plus de 24 mois</option>
+      </select>
+      <div class="error-message"></div>
+    </div>
+    <div class="form-group">
+      <label for="numPasseport">Numéro de passeport :</label>
+      <input type="text" id="numPasseport" name="numPasseport" required>
+    </div>
+    <div class="form-group">
+      <label class="legal">En réservant votre carte sim Maeva Prestige, vous acceptez <a href="https://vodafone.pf/mentions-legales#rgpd" style="color: #E60000; font-weight : 400;white-space:pre-wrap">Politique de Confidentialité</a> de Vodafone Polynésie :</label>
+      <input type="checkbox" id="consentement" name="consentement" required>
+      <label for="consentement">Oui, j'accepte la Politique de Confidentialité de Vodafone Polynésie et je veux réserver ma carte sim Maeva Prestige</label>
+    </div>
+    <input type="submit" value="Valider ma réservation" disabled>
+    <span></span>
+  </form>
+
+  <script>
+
+    // Vérifie si tous les champs requis sont remplis
+
+    function checkFormValidity() {
+  var form = document.querySelector('#myForm');
+  var submitButton = form.querySelector('input[type="submit"]');
+  var errorMessage = form.querySelector('span');
+
+  if (form.checkValidity()) {
+    submitButton.disabled = false;
+    errorMessage.innerHTML = '';
+  } else {
+    submitButton.disabled = true;
+  }
+}
+
+    // Écoute les changements sur les champs pour vérifier la validité du formulaire
+
+      var formInputs = document.querySelectorAll('input, textarea, select');
+for (var i = 0; i < formInputs.length; i++) {
+  formInputs[i].addEventListener('change', checkFormValidity);
+}
+
+</script>
